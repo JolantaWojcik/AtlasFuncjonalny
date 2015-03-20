@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Atlas Funkcjonalny Mózgu</string>
+    <string name="app_nameMenu">STRONA GŁÓWNA</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_mozgowie">MÓZGOWIE CZŁOWIEKA</string>
+    <string name="title_activity_uklad_nerwowy">UKŁAD NERWOWY</string>
+
+    <string-array name="elementyUkladuNerwowego">
+        <item>Neurony</item>
+        <item>Glej</item>
+        <item>Synapsy</item>
+        <item>Podział układu nerwowego</item>
+    </string-array>
+    <string-array name="elementyMozgowia">
+        <item>Rdzeń przedłużony</item>
+        <item>Tyłomózgowie</item>
+        <item>Śródmózgowie</item>
+        <item>Międzymózgowie</item>
+        <item>Kresomózgowie</item>
+        <item>Komory mózgowe</item>
+        <item>Układ limbiczny jako przykład układu funkcjonalnego</item>
+    </string-array>
+    <string-array name="elementyTyłomózgowia">
+        <item>Most</item>
+        <item>Móżdżek</item>
+    </string-array>
+    <string-array name="elementyMiędzymózgowia">
+        <item>Podwzgórze</item>
+        <item>Wzgórze</item>
+        <item>Przysadka mózgowa</item>
+    </string-array>
+    <string-array name="elementyKresomózgowia">
+        <item>Kora mózgowa</item>
+        <item>Hipokamp</item>
+        <item>Wyspa</item>
+        <item>Jądra podstawy</item>
+        <item>Spoidła</item>
+    </string-array>
+
+    <string name="title_activity_neurony">Neurony</string>
+    <string name="title_activity_glej">Glej</string>
+    <string name="title_activity_synapsy">Synapsy</string>
+    <string name="title_activity_podzial_un">Podział Układu Nerwowego</string>
+    <string name="title_activity_tylomozgowie">Tyłomózgowie</string>
+    <string name="title_activity_miedzymozgowie">Międzymózgowie</string>
+    <string name="title_activity_kresomozgowie">Kresomózgowia</string>
+
+</resources>

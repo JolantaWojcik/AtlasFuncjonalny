@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".Main">
+
+    <item
+        style = "@style/customMenu"
+        android:id="@+id/action_uklad"
+        android:title="@string/title_activity_uklad_nerwowy"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item
+        style = "@style/customMenu"
+        android:id="@+id/action_mozgowie"
+        android:title="@string/title_activity_mozgowie"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+</menu>

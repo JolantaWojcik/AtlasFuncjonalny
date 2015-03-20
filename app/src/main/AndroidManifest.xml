@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pl.jolantawojcik.atlasfunkcjonalny" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Main"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Mozgowie"
+            android:label="@string/title_activity_mozgowie" >
+        </activity>
+        <activity
+            android:name=".UkladNerwowy"
+            android:label="@string/title_activity_uklad_nerwowy" >
+        </activity>
+        <activity
+            android:name=".Neurony"
+            android:label="@string/title_activity_neurony" >
+        </activity>
+        <activity
+            android:name=".Glej"
+            android:label="@string/title_activity_glej" >
+        </activity>
+        <activity
+            android:name=".Synapsy"
+            android:label="@string/title_activity_synapsy" >
+        </activity>
+        <activity
+            android:name=".PodzialUN"
+            android:label="@string/title_activity_podzial_un" >
+        </activity>
+        <activity
+            android:name=".Tylomozgowie"
+            android:label="@string/title_activity_tylomozgowie" >
+        </activity>
+        <activity
+            android:name=".Miedzymozgowie"
+            android:label="@string/title_activity_miedzymozgowie" >
+        </activity>
+        <activity
+            android:name=".Kresomozgowie"
+            android:label="@string/title_activity_kresomozgowie" >
+        </activity>
+    </application>
+
+</manifest>
