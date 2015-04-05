@@ -4,22 +4,24 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Miedzymozgowie">
+    android:orientation="horizontal"
+    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Kresomozgowie">
 
         <ListView
-            android:text="@array/elementyMiędzymózgowia"
+            android:text="@array/elementyKresomózgowia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listView"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/model_miedzymozgowie"
-            android:id="@+id/imageView"
-            android:layout_gravity="center_horizontal" />
+            android:src="@drawable/model_kresomozgowie"
+            android:id="@+id/kresomozgowie"
+            android:layout_gravity="center_vertical" />
+
+
     </LinearLayout>
 
