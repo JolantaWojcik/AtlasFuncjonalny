@@ -2,11 +2,11 @@
 <resources>
 
     <string name="app_name">Atlas Funkcjonalny Mózgu</string>
-    <string name="app_nameMenu">STRONA GŁÓWNA</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_nameMenu">Strona główna</string>
+    <string name="description">Rdzeń przedłużony</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_mozgowie">MÓZGOWIE CZŁOWIEKA</string>
-    <string name="title_activity_uklad_nerwowy">UKŁAD NERWOWY</string>
+    <string name="title_activity_mozgowie">Mózgowie człowieka</string>
+    <string name="title_activity_uklad_nerwowy">Układ nerwowy</string>
 
     <string-array name="elementyUkladuNerwowego">
         <item>Neurony</item>
@@ -40,6 +40,9 @@
         <item>Spoidła</item>
     </string-array>
 
+    <string name="rdzen">Rdzeń przedłużony</string>
+    <string name="srodmozgowie">Śródmózgowie</string>
+    <string name="komory">Komory mózgowe</string>
     <string name="title_activity_neurony">Neurony</string>
     <string name="title_activity_glej">Glej</string>
     <string name="title_activity_synapsy">Synapsy</string>
@@ -47,5 +50,167 @@
     <string name="title_activity_tylomozgowie">Tyłomózgowie</string>
     <string name="title_activity_miedzymozgowie">Międzymózgowie</string>
     <string name="title_activity_kresomozgowie">Kresomózgowia</string>
+    <string name="impulsy">Układ nerwowy tworzą wyspecjalizowane komórki nerwowe zwane neuronami. Ich głównym zadaniem jest przewodzenie impulsów elektrycznych. Neuron możemy podzielić na trzy podstawowe części: \n
+                * perikarion, zwany inaczej somą lub ciałem komórki - jest to centralna część komórki, w której znajduje się jądro komórkowe \n
+                * dendryty - silnie rozgałęzione wypustki, przez które sygnał nerwowy trafia do komórki
+                * akson - bardzo długa, zazwyczaj pojedyncza wypustka, przez którą sygnał nerwowy wychodzi z komórki. \n </string>
+    <string name="sygnaly"> Sygnał elektryczny pokonuje więc w komórce następującą trasę: dendryt -> soma -> akson. Następnie, za pośrednictwem synapsy elektrycznej, przechodzi na dendryt kolejnej komórki i cały schemat powtarza się.
+                Akson jest dodatkowo pokryty tzw. otoczką mielinową. Mielina to specjalna substancja, która działa jak izolacja. Dzięki niej sygnał elektryczny może być transportowany szybciej,
+                gdyż nie musi pokonywać całej długiej drogi przez akson - pomija on miejsca, w których znajdują się kłębki mieliny, i przeskakuje tylko od jednej do drugiej przerwy między nimi. Kłębki te noszą nazwę przewężeń Ranviera.
+                W Ośrodkowym Układzie Nerwowym, ciała neuronów tworzą skupiska, które nazywamy "istotą szarą".</string>
+    <string name="title_activity_rdzen">Rdzeń przedłużony</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="funkcjeRdzen">Funcje:
+   \n \t – regulacja oddychania
+   \n \t – regulacja aktywności układu krążenia
+   \n \t – odruchy: wymiotny, ślinienie, kaszel, kichanie \n</string>
+    <string name="strukturyRdzen">Główne struktury:
+    \n \t - bruzda pośrodkowa tylna i przednia
+    \n \t - oliwki
+    \n \t - piramidy
+    \n \t - pęczek i guzek smukły
+    \n \t - pęczek i guzek klinowaty
+    \n \t - ujścia nerwów czaszkowych \n</string>
+    <string name="title_activity_most">Most</string>
+    <string name="mostFunkcje">Fukcje:
+        \n\t – sterowanie pobudzeniem za pomocą struktur
+		\n\t - układu siatkowatego(np. miejsce sinawe, jadra szwu)
+        \n\t – zawiera jądra przekaźnikowe dróg czuciowych
+        \n\t – drogi nerwowe zstępujące i wstępujące, drogi móżdżkowe \n</string>
+    <string name="mostStruktury">Główne struktury:
+        \n\t -podstawa mostu:
+        \n\t\t 1) drogi nerwowe wstępujące i zstępujące
+        \n\t\t 2) jj. mostowe projekcyjne (kora -> móżdżek)
+        \n\t nakrywka mostu:
+        \n\t\t 1) jj. nerwów czaszkowych
+        \n\t\t 2) struktury drogi słuchowej(ciało czworoboczne)
+        \n\t\t 4) jj. przedsionkowe
+        \n\t\t 5) struktury tworu siatkowatego
+        \n\t\t 6) jj. szwu \n</string>
+    <string name="mozdzekFunkcje">Fukcje:
+        \n\t – utrzymanie równowagi
+        \n\t – dostrojenie precyzji ruchów (objaw uszkodzenia: ataksja, dyzartria)
+        \n\t – nabywanie sprawności ruchowych
+        \n\t – udział w sterowaniu uwagą
+        \n\t – timing (przetwarzanie czasowe): ocena i produkcja krótkich interwałów
+				czasowych, w tym rytmów \n</string>
+    <string name="mozdzekStruktury">Główne struktury:
+        \n\t – robak
+        \n\t – półkule móżdżku: kora móżdżku, jądra podkorowe
+            (j. zębate, jj. wstawkowe, j. wierzchu)</string>
+    <string name="title_activity_mozdzek">Móżdżek</string>
+    <string name="title_activity_srodmozgowie">Śródmózgowie</string>
+    <string name="srodmozgowieFunkcje">Funkcje:
+        \n\t – udział w sterowaniu ruchem (j. czerwienne, substancja czarna)
+        \n\t – ośrodki układu siatkowatego (pole brzuszne nakrywki)
+        \n\t – elementy układu słuchowego (wzgórki dolne) i wzrokowego (wzgórki górne)
+        \n\t – ośrodkowe blokowanie bólu (substancja szara okołowodociągowa)\n</string>
+    <string name="srodmozgowieStruktury">Główne struktury:
+        \n\t – nakrywka: istota czarna, twór siatkowaty, j. czerwienne
+        \n\t – pokrywa: wzgórki górne i dolne, jj. nerwu III i IV
+        \n\t – konary mózgu \n</string>
+    <string name="title_activity_podwzgorze">Podwzgórze</string>
+    <string name="podwzgorzeFunkcje">Funkcje:
+        \n\t  – regulacja homeostazy: temperatura, gospodarka wodno-elektrolitowa
+        \n\t– kontrola układu dokrewnego
+        \n\t – kontrola układu płciowego
+        \n\t – regulacja mechanizmów łaknienia i pragnienia \n</string>
+    <string name="podwzgorzeStruktury"> Główne struktury:
+        \n\t – nakrywka: istota czarna, twór siatkowaty, j. czerwienne
+        \n\t– pokrywa: wzgórki górne i dolne, jj. nerwu III i IV
+        \n\t – konary mózgu \n</string>
+    <string name="title_activity_wzgorze">Wzgórze</string>
+    <string name="wzgorzeFunkcje">Funkcje:
+        \n\t – „brama kory" filtrowanie informacji docierających do kory(wszystkie zmysły oprócz węchu)
+        \n\t – rozległe, zwrotne połączenia z całą korą
+        \n\t – udział w pętlach neuronalnych sterujących ruchem(razem z korą mózgową i jądrami podstawy)
+        \n\t – sterowanie pobudzeniem korowym \n</string>
+    <string name="wzgorzeStruktury">Główne struktury:
+        \n\t – układ niespecyficzny (j. siatkowate, jj. śródblaszkowe)
+        \n\t– układ specyficzny grupa jąder przyśrodkowych przednich, bocznych, poduszka, ciała kolankowate \n</string>
+    <string name="title_activity_przysadka">Przysadka mózgowa</string>
+    <string name="przysadkaFunkcje">Funkcje:
+        \n\t -reguluje procesy przemiany materii
+        \n\t -kontroluje gospodarkę wodną oraz funkcje innych gruczołów dokrewnych (nadnerczy, tarczycy, gonad) \n
+        \n Część przednia (gruczołowa) wydziela:
+        \n\t hormon wzrostu (GH)
+        \n\t prolaktynę (PRL)
+        \n\t hormon adrenokortykotropowy ACTH
+        \n\t hormon tyreotropowy TSH
+        \n\t hormon folikulotropowy FSH
+        \n\t hormon luteinizujący LH
+        \n\t endorfiny PEA. \n
+        \n Część środkowa wydziela:
+        \n\t Melanotropina MSH \n
+        \n Część tylna (nerwowa) magazynuje:
+        \n\t oksytocynę
+        \n\t wazopresynę ADH (hormon antydiuretyczny)\n</string>
+    <string name="title_activity_kora_mozgowa">Kora Mózgowa</string>
+    <string name="koraFunkcje">Funkcje:
+        \n\t – percepcja
+        \n\t – kontrola ruchowa
+        \n\t – uwaga
+        \n\t – pamięć
+        \n\t – emocje
+        \n\t – myślenie \n</string>
+    <string name="koraStruktury">Główne struktury:
+        \n\t – płaty: czołowy, skroniowy, potyliczny, ciemieniowy, wyspa
+        \n\t – zakręt (obręczy, zaśrodkowy, przedśrodkowy)
+        \n\t – bruzdy (boczna, środkowa, ostrogowa)
+        \n\t – szczeliny (podłóżna)
+        \n\t – spoidła (wielkie, przednie, hipokamp)
+        \n\t – włókna kojarzeniowe \n</string>
+    <string name="title_activity_komory">Komory mózgowe</string>
+    <string name="komoryStruktury">Komory mózgu i odpowiadające im pęcherzyki mózgowe:
+       \n\t – komory boczne (kresomózgowie)
+        \n\t – komora trzecia (międzymózgowie)
+        \n\t – wodociąg mózgu (śródmózgowie)
+        \n\t – komora czwarta (tyłomózgowie) \n</string>
+    <string name="komoryFunkcje">Funkcje:
+        \n\t – produkcja płynu mózgowo-rdzeniowego
+        \n\t Otwory Magendiego (pośrodkowy) i Luschki (boczne)
+     \n\t – miejsca, gdzie płyn mózgowordzeniowy przedostaje się do
+			przestrzeni podpajęczynówkowej wokół mózgowia i rdzenia kręgowego \n</string>
+    <string name="glej">        Komórki glejowe to kolejny typ komórek układu nerwowego. Szacuje się, że jest ich w organizmie około 10 razy więcej niż neuronów.
+        Ich nazwa pochodzi od greckiego słowa "glia" oznaczającego klej, gdyż w momencie ich odkrycia sądzono,
+        że stanowią one tylko nieaktywną tkankę łączącą ze sobą komórki nerwowe. Stąd wziął się też popularny mit głoszący,
+        że używamy jedynie 10% możliwości naszych mózgów.
+        Dziś wiemy, że nie jest to prawda a komórki glejowe pełnią w ukłądzie nerwowym różnorakie funkcje.
+        \n\t  * astrocyty - są to komórki glejowe przypominające kształtem gwiazdę. Ich główna funkcja to odżywianie innych komórek.
+	    \n\t * oligodendrocyty - tworzą osłonkę mielinową na aksonach w Ośrodkowym Układzie Nerwowym
+	    \n\t * komórki Schwanna - tworzą osłonkę mielinową na aksonach w Obwodowym Układzie Nerwowym
+	    \n\t * mikroglej - usuwają umierające neurony \n
+        W Ośrodkowym Układzie Nerwowym, komórki glejowe tworzą skupiska, które nazywamy "istotą białą". \n</string>
+    <string name="synapsy">        Synapsą nazywamy połączenie, zazwyczaj między dendrytem jednej komórki nerwowej a aksonem drugiej. W jej obrębie następuje przekazanie impulsu. W układzie nerwowym występują dwa rodzaje synaps:\n
+                \t* synapsy elektryczne - w ich obrębie, bezpośrednio i szybko, transportowane są między komórkami jony. \n
+                \t* synapsy chemiczne - w nich przewodzenie odbywa się wolniej i za pośrednictwem specjalnych związków chemicznych, zwanych neuroprzekaźnikami. Powszechnie znane neuroprzekaźniki to np. serotonina, dopamina, adrenalina.\n</string>
+    <string name="title_activity_jadra_podstawy">Jądra Podstawy</string>
+    <string name="jadraFunkcje">Funkcje:
+        \n\t – liczne połączenia głównie z obszarazm kio crząo młoówzygmu,i
+        \n\t – planowanie i wykonanie ruchów
+        \n\t – zachowania emocjonalne
+        \n\t – pamięć proceduralna
+        \n\t – sctiarułok tmurig udkałłaodwua etem: ojecdjonnaa zln kelugoczowych
+        \n\t – jnąadgrroo pdóyłleżące: ważna część układu \n</string>
+    <string name="jadraStruktury">        Główne struktury:
+        \n\t – jądro ogoniaste
+        \n\t – skorupa
+        \n\t – gałka blada
+        \n\t – ciało migdałowate
+        \n\t - część podstawna przodomózgowia
+        \n\t -jądro półleżące \n</string>
+    <string name="spoidla">        Spoidła korowe i podkorowe:
+        \n\t – spoidła korowe - wielkie, przednie, hipokampa
+        \n\t – spoidła podkorowe (poza kresomózgowiem) – tylne, uzdeczek, wzgórków czworaczych</string>
+    <string name="title_activity_spoidla">Spoidła</string>
+    <string name="title_activity_hipokamp">Hipokamp</string>
+
+    <string name="hipokamp">
+        Struktura korowa leżąca w przyśrodkowej części płata skroniowego. \n
+        \n Funkcje:
+        \n\t – bierze udział w procesach pamięciowych
+        \t – wysyła połączenia przez sklepienie
+        \n\t – otrzymuje informacje przez korę śródwęchową
+    </string>
 
 </resources>

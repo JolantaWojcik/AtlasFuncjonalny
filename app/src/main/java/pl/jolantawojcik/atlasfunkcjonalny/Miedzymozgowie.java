@@ -30,15 +30,15 @@ public class Miedzymozgowie extends ActionBarActivity {
         listViewMiedzymozgowie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (arrayMiedzymozgowie[position] == arrayMiedzymozgowie[0]) {
-                    Intent intent = new Intent(Miedzymozgowie.this, Neurony.class);
+                    Intent intent = new Intent(Miedzymozgowie.this, Podwzgorze.class);
                     startActivity(intent);
                 }
                 if (arrayMiedzymozgowie[position] == arrayMiedzymozgowie[1]) {
-                    Intent intent = new Intent(Miedzymozgowie.this, Neurony.class);
+                    Intent intent = new Intent(Miedzymozgowie.this, Wzgorze.class);
                     startActivity(intent);
                 }
                 if (arrayMiedzymozgowie[position] == arrayMiedzymozgowie[2]) {
-                    Intent intent = new Intent(Miedzymozgowie.this, Neurony.class);
+                    Intent intent = new Intent(Miedzymozgowie.this, Przysadka.class);
                     startActivity(intent);
                 }
 

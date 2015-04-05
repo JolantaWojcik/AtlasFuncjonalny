@@ -29,12 +29,12 @@ public class Kresomozgowie extends ActionBarActivity {
         listViewKresomozgowie.setAdapter(adapter);
         listViewKresomozgowie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if ( arrayKresomozgowie[position] ==  arrayKresomozgowie[0]) {
-                    Intent intent = new Intent(Kresomozgowie.this, Neurony.class);
+                if (arrayKresomozgowie[position] ==  arrayKresomozgowie[0]) {
+                    Intent intent = new Intent(Kresomozgowie.this, KoraMozgowa.class);
                     startActivity(intent);
                 }
                 if (arrayKresomozgowie[position] ==  arrayKresomozgowie[1]) {
-                    Intent intent = new Intent(Kresomozgowie.this, Neurony.class);
+                    Intent intent = new Intent(Kresomozgowie.this, Hipokamp.class);
                     startActivity(intent);
                 }
                 if (arrayKresomozgowie[position] ==  arrayKresomozgowie[2]) {
@@ -42,11 +42,11 @@ public class Kresomozgowie extends ActionBarActivity {
                     startActivity(intent);
                 }
                 if (arrayKresomozgowie[position] ==  arrayKresomozgowie[3]) {
-                    Intent intent = new Intent(Kresomozgowie.this, Neurony.class);
+                    Intent intent = new Intent(Kresomozgowie.this, JadraPodstawy.class);
                     startActivity(intent);
                 }
                 if (arrayKresomozgowie[position] ==  arrayKresomozgowie[4]) {
-                    Intent intent = new Intent(Kresomozgowie.this, Neurony.class);
+                    Intent intent = new Intent(Kresomozgowie.this, Spoidla.class);
                     startActivity(intent);
                 }
             }
