@@ -20,6 +20,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/model_miedzymozgowie"
             android:id="@+id/imageView"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" />
+
+ </LinearLayout>
 

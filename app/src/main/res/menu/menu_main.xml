@@ -7,7 +7,6 @@
         style = "@style/customMenu"
         android:id="@+id/action_uklad"
         android:title="@string/title_activity_uklad_nerwowy"
-
         android:orderInCategory="100" app:showAsAction="never" />
 
     <item

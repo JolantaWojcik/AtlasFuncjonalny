@@ -4,6 +4,7 @@
     <string name="app_name">Atlas Funkcjonalny Mózgu</string>
     <string name="app_nameMenu">Strona główna</string>
     <string name="description">Rdzeń przedłużony</string>
+    <string name="title_search">search</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_mozgowie">Mózgowie człowieka</string>
     <string name="title_activity_uklad_nerwowy">Układ nerwowy</string>
@@ -21,7 +22,6 @@
         <item>Międzymózgowie</item>
         <item>Kresomózgowie</item>
         <item>Komory mózgowe</item>
-        <item>Układ limbiczny jako przykład układu funkcjonalnego</item>
     </string-array>
     <string-array name="elementyTyłomózgowia">
         <item>Most</item>
@@ -47,9 +47,9 @@
     <string name="title_activity_glej">Glej</string>
     <string name="title_activity_synapsy">Synapsy</string>
     <string name="title_activity_podzial_un">Podział Układu Nerwowego</string>
-    <string name="title_activity_tylomozgowie">Tyłomózgowie</string>
+    <string name="title_activity_tylomozgowie">Tyłomózgowie wtrórne</string>
     <string name="title_activity_miedzymozgowie">Międzymózgowie</string>
-    <string name="title_activity_kresomozgowie">Kresomózgowia</string>
+    <string name="title_activity_kresomozgowie">Kresomózgowie</string>
     <string name="impulsy">Układ nerwowy tworzą wyspecjalizowane komórki nerwowe zwane neuronami. Ich głównym zadaniem jest przewodzenie impulsów elektrycznych. Neuron możemy podzielić na trzy podstawowe części: \n
                 * perikarion, zwany inaczej somą lub ciałem komórki - jest to centralna część komórki, w której znajduje się jądro komórkowe \n
                 * dendryty - silnie rozgałęzione wypustki, przez które sygnał nerwowy trafia do komórki
@@ -58,8 +58,8 @@
                 Akson jest dodatkowo pokryty tzw. otoczką mielinową. Mielina to specjalna substancja, która działa jak izolacja. Dzięki niej sygnał elektryczny może być transportowany szybciej,
                 gdyż nie musi pokonywać całej długiej drogi przez akson - pomija on miejsca, w których znajdują się kłębki mieliny, i przeskakuje tylko od jednej do drugiej przerwy między nimi. Kłębki te noszą nazwę przewężeń Ranviera.
                 W Ośrodkowym Układzie Nerwowym, ciała neuronów tworzą skupiska, które nazywamy "istotą szarą".</string>
+
     <string name="title_activity_rdzen">Rdzeń przedłużony</string>
-    <string name="hello_world">Hello world!</string>
     <string name="funkcjeRdzen">Funcje:
    \n \t – regulacja oddychania
    \n \t – regulacja aktywności układu krążenia
@@ -121,10 +121,10 @@
         \n\t – konary mózgu \n</string>
     <string name="title_activity_wzgorze">Wzgórze</string>
     <string name="wzgorzeFunkcje">Funkcje:
-        \n\t – „brama kory" filtrowanie informacji docierających do kory(wszystkie zmysły oprócz węchu)
-        \n\t – rozległe, zwrotne połączenia z całą korą
-        \n\t – udział w pętlach neuronalnych sterujących ruchem(razem z korą mózgową i jądrami podstawy)
-        \n\t – sterowanie pobudzeniem korowym \n</string>
+        \n – „brama kory" filtrowanie informacji docierających do kory(wszystkie zmysły oprócz węchu)
+        \n – rozległe, zwrotne połączenia z całą korą
+         \n – udział w pętlach neuronalnych sterujących ruchem(razem z korą mózgową i jądrami podstawy)
+        \n – sterowanie pobudzeniem korowym \n</string>
     <string name="wzgorzeStruktury">Główne struktury:
         \n\t – układ niespecyficzny (j. siatkowate, jj. śródblaszkowe)
         \n\t– układ specyficzny grupa jąder przyśrodkowych przednich, bocznych, poduszka, ciała kolankowate \n</string>
@@ -204,13 +204,21 @@
         \n\t – spoidła podkorowe (poza kresomózgowiem) – tylne, uzdeczek, wzgórków czworaczych</string>
     <string name="title_activity_spoidla">Spoidła</string>
     <string name="title_activity_hipokamp">Hipokamp</string>
-
-    <string name="hipokamp">
-        Struktura korowa leżąca w przyśrodkowej części płata skroniowego. \n
+    <string name="hipokamp">        Struktura korowa leżąca w przyśrodkowej części płata skroniowego. \n
         \n Funkcje:
         \n\t – bierze udział w procesach pamięciowych
         \t – wysyła połączenia przez sklepienie
-        \n\t – otrzymuje informacje przez korę śródwęchową
-    </string>
+        \n\t – otrzymuje informacje przez korę śródwęchową</string>
+    <string name="title_activity_wyspa">Wyspa</string>
+    <string name="wyspa">Ma kształt trójściennej piramidy z wierzchołkiem zwróconym ku przodowi i bokowi.
+        Próg wyspy przerywa bruzdę okólną w okolicy jej wierzchołka. Buduje ją istota szara.
+        Na powierzchni wyspy wyróżniamy zakręty krótkie i zakręt długi oddzielone bruzdą środkową wyspy.
+        Płaszcz wyspy – kora wyspowa posiada ośrodki wisceromotoryczne i wiscerosensoryczne. \n </string>
+
+    <string name="search_label">Wyszukiwarka</string>
+    <string name="search_hint">Wyszukaj strukturę</string>
+    <string name="title_activity_handle_fragment">Handle Fragment</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
