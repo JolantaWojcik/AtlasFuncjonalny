@@ -38,7 +38,7 @@ public class Kresomozgowie extends ActionBarActivity {
                     startActivity(intent);
                 }
                 if (arrayKresomozgowie[position] ==  arrayKresomozgowie[2]) {
-                    Intent intent = new Intent(Kresomozgowie.this, Neurony.class);
+                    Intent intent = new Intent(Kresomozgowie.this, Wyspa.class);
                     startActivity(intent);
                 }
                 if (arrayKresomozgowie[position] ==  arrayKresomozgowie[3]) {

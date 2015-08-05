@@ -30,7 +30,7 @@ public class Mozgowie extends ActionBarActivity {
         listViewMozgowie.setOnItemClickListener( new AdapterView.OnItemClickListener() {
                                                      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                          if (arrayMozgowie[position] == arrayMozgowie[0]) {
-                                                             Intent intent = new Intent(Mozgowie.this, Neurony.class);
+                                                             Intent intent = new Intent(Mozgowie.this, Rdzen.class);
                                                              startActivity(intent);
                                                          }
                                                          if (arrayMozgowie[position] == arrayMozgowie[1]) {
@@ -38,7 +38,7 @@ public class Mozgowie extends ActionBarActivity {
                                                              startActivity(intent);
                                                          }
                                                          if (arrayMozgowie[position] == arrayMozgowie[2]) {
-                                                             Intent intent = new Intent(Mozgowie.this, Neurony.class);
+                                                             Intent intent = new Intent(Mozgowie.this, Srodmozgowie.class);
                                                              startActivity(intent);
                                                          }
                                                          if (arrayMozgowie[position] == arrayMozgowie[3]) {
@@ -50,11 +50,7 @@ public class Mozgowie extends ActionBarActivity {
                                                              startActivity(intent);
                                                          }
                                                          if (arrayMozgowie[position] == arrayMozgowie[5]) {
-                                                             Intent intent = new Intent(Mozgowie.this, Neurony.class);
-                                                             startActivity(intent);
-                                                         }
-                                                         if (arrayMozgowie[position] == arrayMozgowie[6]) {
-                                                             Intent intent = new Intent(Mozgowie.this, Neurony.class);
+                                                             Intent intent = new Intent(Mozgowie.this, Komory.class);
                                                              startActivity(intent);
                                                          }
                                                      }

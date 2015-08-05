@@ -1,0 +1,2009 @@
+Index: app/src/main/res/menu/menu_spoidla.xml
+===================================================================
+--- app/src/main/res/menu/menu_spoidla.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_spoidla.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Spoidla">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/raw/definitions.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/src/main/res/raw/definitions.txt	(revision )
++++ app/src/main/res/raw/definitions.txt	(revision )
+@@ -0,0 +1,4 @@
++most
++kora
++nico
++jakies cos
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -1,6 +1,9 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    package="pl.jolantawojcik.atlasfunkcjonalny" >
++    package="pl.jolantawojcik.atlasfunkcjonalny"
++    android:versionCode="1"
++    android:versionName="1.0">
++    <uses-sdk android:minSdkVersion="13" />
+ 
+     <application
+         android:allowBackup="true"
+@@ -9,13 +12,17 @@
+         android:theme="@style/AppTheme" >
+         <activity
+             android:name=".Main"
+-            android:label="@string/app_name"
+-           >
++            android:label="@string/app_name" >
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+-
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
++            <intent-filter>
++                <action android:name="android.intent.action.SEARCH" />
++            </intent-filter>
++            <meta-data
++                android:name="android.app.searchable"
++                android:resource="@xml/searchable" />
+         </activity>
+         <activity
+             android:name=".Mozgowie"
+@@ -35,7 +42,7 @@
+         </activity>
+         <activity
+             android:name=".Synapsy"
+-            android:hardwareAccelerated = "false"
++            android:hardwareAccelerated="false"
+             android:label="@string/title_activity_synapsy" >
+         </activity>
+         <activity
+@@ -44,7 +51,7 @@
+         </activity>
+         <activity
+             android:name=".Tylomozgowie"
+-            android:label="Ty?omózgowie" >
++            android:label="@string/title_activity_tylomozgowie" >
+         </activity>
+         <activity
+             android:name=".Miedzymozgowie"
+@@ -101,6 +108,10 @@
+         <activity
+             android:name=".Hipokamp"
+             android:label="@string/title_activity_hipokamp" >
++        </activity>
++        <activity
++            android:name=".Wyspa"
++            android:label="@string/title_activity_wyspa" >
+         </activity>
+     </application>
+ 
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout-land/activity_main.xml	(revision )
+@@ -1,105 +1,119 @@
++<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
++    android:id="@+id/mainLayout"
+     android:orientation="vertical"
+     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Main">
+ 
++    <LinearLayout
++        android:id="@+id/leftLayout"
++        android:orientation="vertical"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content">
++
+         <SearchView
+-                android:queryHint="Wyszukaj struktur?"
++            android:queryHint="@string/search_hint"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:id="@+id/searchView"
+-                android:layout_gravity="right" />
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:id="@+id/searchView"
++            android:layout_gravity="right" />
+ 
+-                <HorizontalScrollView
++        <ListView
+-                    android:layout_width="wrap_content"
++            android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
++            android:layout_height="90dp"
++            android:id="@+id/searchList" />
++
++    </LinearLayout>
++
++    <HorizontalScrollView
++        android:layout_width="fill_parent"
++        android:layout_height="fill_parent"
+-                    android:id="@+id/horizontalScrollView2"
++        android:id="@+id/horizontalScrollView2"
+-                    android:layout_weight="1">
++        android:layout_gravity="center_vertical">
+ 
+-                    <LinearLayout
+-                        android:orientation="horizontal"
+-                        android:layout_width="fill_parent"
+-                        android:layout_height="fill_parent"
+-                        android:gravity="center_vertical">
++        <LinearLayout
++            android:orientation="horizontal"
++            android:layout_width="fill_parent"
++            android:layout_height="fill_parent"
++            android:gravity="center_vertical">
+ 
+-
+-                    <LinearLayout
+-                            android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                            android:layout_width="wrap_content"
+-                            android:layout_height="wrap_content"
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent"
+-                            android:layout_gravity="center_vertical"
+-                            android:id="@+id/rdzen_przedluzony"
+-                            android:layout_weight="1">
++                android:layout_gravity="center_vertical"
++                android:id="@+id/rdzen_przedluzony"
++                android:layout_weight="1">
+ 
+-                    <ImageView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:id="@+id/model_rdzen"
+-                        android:src="@drawable/model_rdzen"
+-                        android:scaleType = "matrix"
+-                        android:maxHeight="100dp"
+-                        android:maxWidth="50dp"
+-                        android:layout_gravity="center_vertical" />
++                <ImageView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:id="@+id/model_rdzen"
++                    android:src="@drawable/model_rdzen"
++                    android:scaleType = "matrix"
++                    android:maxHeight="100dp"
++                    android:maxWidth="50dp"
++                    android:layout_gravity="center_vertical" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/rdzen"
+-                        android:id="@+id/rdzen"
+-                        android:layout_gravity="center_horizontal|bottom" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/rdzen"
++                    android:id="@+id/rdzen"
++                    android:layout_gravity="center_horizontal|bottom" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                    <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:scaleType = "matrix"
+                     android:id="@+id/model_tylomozgowie"
+                     android:src="@drawable/model_tylomozgowie" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/title_activity_tylomozgowie"
+-                        android:id="@+id/tylomozgowie"
+-                        android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/title_activity_tylomozgowie"
++                    android:id="@+id/tylomozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                    <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/model_srodmozgowie"
+                     android:src="@drawable/model_srodmozgowie" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/srodmozgowie"
+-                        android:id="@+id/srodmozgowie"
+-                        android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/srodmozgowie"
++                    android:id="@+id/srodmozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                 <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/model_miedzymozgowie"
+@@ -108,19 +122,19 @@
+                     android:maxHeight="100dp"
+                     android:maxWidth="50dp"/>
+ 
+-                  <TextView
+-                      android:layout_width="wrap_content"
+-                      android:layout_height="wrap_content"
+-                      android:textAppearance="?android:attr/textAppearanceMedium"
+-                      android:text="@string/title_activity_miedzymozgowie"
+-                      android:id="@+id/miedzymozgowie"
+-                      android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/title_activity_miedzymozgowie"
++                    android:id="@+id/miedzymozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+                 <ImageView
+                     android:layout_width="wrap_content"
+@@ -128,38 +142,38 @@
+                     android:id="@+id/model_kresomozgowie"
+                     android:src="@drawable/model_kresomozgowie" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/title_activity_kresomozgowie"
+-                        android:id="@+id/kresomozgowie"
+-                        android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/title_activity_kresomozgowie"
++                    android:id="@+id/kresomozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                        <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                 <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/model_komory_mozgowe"
+                     android:src="@drawable/model_komory_mozgowe" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/komory"
+-                        android:id="@+id/komory"
+-                        android:layout_gravity="center_horizontal" />
+-                        </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/komory"
++                    android:id="@+id/komory"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-            </LinearLayout>
++        </LinearLayout>
+ 
+-        </HorizontalScrollView>
++    </HorizontalScrollView>
+ 
+-
+-    </LinearLayout>
++</LinearLayout>
++
+Index: app/src/main/res/layout/activity_mozdzek.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_mozdzek.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_mozdzek.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Mozdzek">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -30,6 +25,5 @@
+                 android:layout_gravity="center_horizontal" />
+         </LinearLayout>
+ 
+-    </ScrollView>
++</ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_kresomozgowie.xml
+===================================================================
+--- app/src/main/res/menu/menu_kresomozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_kresomozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Kresomozgowie">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/menu/menu_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_main.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_main.xml	(revision )
+@@ -7,7 +7,6 @@
+         style = "@style/customMenu"
+         android:id="@+id/action_uklad"
+         android:title="@string/title_activity_uklad_nerwowy"
+-
+         android:orderInCategory="100" app:showAsAction="never" />
+ 
+     <item
+Index: app/src/main/res/menu/menu_most.xml
+===================================================================
+--- app/src/main/res/menu/menu_most.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_most.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Most">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -4,6 +4,7 @@
+     <string name="app_name">Atlas Funkcjonalny Mózgu</string>
+     <string name="app_nameMenu">Strona g?ówna</string>
+     <string name="description">Rdze? przed?u?ony</string>
++    <string name="title_search">search</string>
+     <string name="action_settings">Settings</string>
+     <string name="title_activity_mozgowie">Mózgowie cz?owieka</string>
+     <string name="title_activity_uklad_nerwowy">Uk?ad nerwowy</string>
+@@ -21,7 +22,6 @@
+         <item>Mi?dzymózgowie</item>
+         <item>Kresomózgowie</item>
+         <item>Komory mózgowe</item>
+-        <item>Uk?ad limbiczny jako przyk?ad uk?adu funkcjonalnego</item>
+     </string-array>
+     <string-array name="elementyTy?omózgowia">
+         <item>Most</item>
+@@ -47,9 +47,9 @@
+     <string name="title_activity_glej">Glej</string>
+     <string name="title_activity_synapsy">Synapsy</string>
+     <string name="title_activity_podzial_un">Podzia? Uk?adu Nerwowego</string>
+-    <string name="title_activity_tylomozgowie">Ty?omózgowie</string>
++    <string name="title_activity_tylomozgowie">Ty?omózgowie wtrórne</string>
+     <string name="title_activity_miedzymozgowie">Mi?dzymózgowie</string>
+-    <string name="title_activity_kresomozgowie">Kresomózgowia</string>
++    <string name="title_activity_kresomozgowie">Kresomózgowie</string>
+     <string name="impulsy">Uk?ad nerwowy tworz? wyspecjalizowane komórki nerwowe zwane neuronami. Ich g?ównym zadaniem jest przewodzenie impulsów elektrycznych. Neuron mo?emy podzieli? na trzy podstawowe cz??ci: \n
+                 * perikarion, zwany inaczej som? lub cia?em komórki - jest to centralna cz??? komórki, w której znajduje si? j?dro komórkowe \n
+                 * dendryty - silnie rozga??zione wypustki, przez które sygna? nerwowy trafia do komórki
+@@ -58,8 +58,8 @@
+                 Akson jest dodatkowo pokryty tzw. otoczk? mielinow?. Mielina to specjalna substancja, która dzia?a jak izolacja. Dzi?ki niej sygna? elektryczny mo?e by? transportowany szybciej,
+                 gdy? nie musi pokonywa? ca?ej d?ugiej drogi przez akson - pomija on miejsca, w których znajduj? si? k??bki mieliny, i przeskakuje tylko od jednej do drugiej przerwy mi?dzy nimi. K??bki te nosz? nazw? przew??e? Ranviera.
+                 W O?rodkowym Uk?adzie Nerwowym, cia?a neuronów tworz? skupiska, które nazywamy "istot? szar?".</string>
++
+     <string name="title_activity_rdzen">Rdze? przed?u?ony</string>
+-    <string name="hello_world">Hello world!</string>
+     <string name="funkcjeRdzen">Funcje:
+    \n \t – regulacja oddychania
+    \n \t – regulacja aktywno?ci uk?adu kr??enia
+@@ -121,10 +121,10 @@
+         \n\t – konary mózgu \n</string>
+     <string name="title_activity_wzgorze">Wzgórze</string>
+     <string name="wzgorzeFunkcje">Funkcje:
+-        \n\t – „brama kory" filtrowanie informacji docieraj?cych do kory(wszystkie zmys?y oprócz w?chu)
+-        \n\t – rozleg?e, zwrotne po??czenia z ca?? kor?
+-        \n\t – udzia? w p?tlach neuronalnych steruj?cych ruchem(razem z kor? mózgow? i j?drami podstawy)
+-        \n\t – sterowanie pobudzeniem korowym \n</string>
++        \n – „brama kory" filtrowanie informacji docieraj?cych do kory(wszystkie zmys?y oprócz w?chu)
++        \n – rozleg?e, zwrotne po??czenia z ca?? kor?
++         \n – udzia? w p?tlach neuronalnych steruj?cych ruchem(razem z kor? mózgow? i j?drami podstawy)
++        \n – sterowanie pobudzeniem korowym \n</string>
+     <string name="wzgorzeStruktury">G?ówne struktury:
+         \n\t – uk?ad niespecyficzny (j. siatkowate, jj. ?ródblaszkowe)
+         \n\t– uk?ad specyficzny grupa j?der przy?rodkowych przednich, bocznych, poduszka, cia?a kolankowate \n</string>
+@@ -204,13 +204,21 @@
+         \n\t – spoid?a podkorowe (poza kresomózgowiem) – tylne, uzdeczek, wzgórków czworaczych</string>
+     <string name="title_activity_spoidla">Spoid?a</string>
+     <string name="title_activity_hipokamp">Hipokamp</string>
+-
+-    <string name="hipokamp">
+-        Struktura korowa le??ca w przy?rodkowej cz??ci p?ata skroniowego. \n
++    <string name="hipokamp">        Struktura korowa le??ca w przy?rodkowej cz??ci p?ata skroniowego. \n
+         \n Funkcje:
+         \n\t – bierze udzia? w procesach pami?ciowych
+         \t – wysy?a po??czenia przez sklepienie
+-        \n\t – otrzymuje informacje przez kor? ?ródw?chow?
+-    </string>
++        \n\t – otrzymuje informacje przez kor? ?ródw?chow?</string>
++    <string name="title_activity_wyspa">Wyspa</string>
++    <string name="wyspa">Ma kszta?t trój?ciennej piramidy z wierzcho?kiem zwróconym ku przodowi i bokowi.
++        Próg wyspy przerywa bruzd? okóln? w okolicy jej wierzcho?ka. Buduje j? istota szara.
++        Na powierzchni wyspy wyró?niamy zakr?ty krótkie i zakr?t d?ugi oddzielone bruzd? ?rodkow? wyspy.
++        P?aszcz wyspy – kora wyspowa posiada o?rodki wisceromotoryczne i wiscerosensoryczne. \n </string>
++
++    <string name="search_label">Wyszukiwarka</string>
++    <string name="search_hint">Wyszukaj struktur?</string>
++    <string name="title_activity_handle_fragment">Handle Fragment</string>
++
++    <string name="hello_world">Hello world!</string>
+ 
+ </resources>
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/Project_Default.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/inspectionProfiles/Project_Default.xml	(revision )
+@@ -1,12 +1,7 @@
+ <component name="InspectionProjectProfileManager">
+-  <profile version="1.0" is_locked="false">
++  <profile version="1.0">
+     <option name="myName" value="Project Default" />
+-    <option name="myLocal" value="false" />
+     <inspection_tool class="AndroidLintNewApi" enabled="false" level="ERROR" enabled_by_default="false" />
+     <inspection_tool class="AndroidLintUselessParent" enabled="false" level="WARNING" enabled_by_default="false" />
+-    <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
+-      <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
+-      <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
+-    </inspection_tool>
+   </profile>
+ </component>
+\ No newline at end of file
+Index: app/src/main/res/menu/menu_rdzen.xml
+===================================================================
+--- app/src/main/res/menu/menu_rdzen.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_rdzen.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Rdzen">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/compiler.xml	(revision )
+@@ -1,7 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="CompilerConfiguration">
+-    <option name="DEFAULT_COMPILER" value="Javac" />
+     <resourceExtensions />
+     <wildcardResourcePatterns>
+       <entry name="!?*.java" />
+@@ -12,6 +11,7 @@
+       <entry name="!?*.flex" />
+       <entry name="!?*.kt" />
+       <entry name="!?*.clj" />
++      <entry name="!?*.aj" />
+     </wildcardResourcePatterns>
+     <annotationProcessing>
+       <profile default="true" name="Default" enabled="false">
+@@ -19,5 +19,4 @@
+       </profile>
+     </annotationProcessing>
+   </component>
+-</project>
++</project>
+\ No newline at end of file
+-
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/vcs.xml	(revision )
+@@ -1,7 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="" vcs="Git" />
+   </component>
+-</project>
++</project>
+\ No newline at end of file
+-
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_komory.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_komory.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_komory.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Komory">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -30,6 +25,5 @@
+                 android:layout_gravity="center_horizontal" />
+         </LinearLayout>
+ 
+-    </ScrollView>
++ </ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_neurony.xml
+===================================================================
+--- app/src/main/res/menu/menu_neurony.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_neurony.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Neurony">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/misc.xml	(revision )
+@@ -3,9 +3,25 @@
+   <component name="EntryPointsManager">
+     <entry_points version="2.0" />
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
++  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
++    <OptionsSetting value="true" id="Add" />
++    <OptionsSetting value="true" id="Remove" />
++    <OptionsSetting value="true" id="Checkout" />
++    <OptionsSetting value="true" id="Update" />
++    <OptionsSetting value="true" id="Status" />
++    <OptionsSetting value="true" id="Edit" />
++    <ConfirmationsSetting value="0" id="Add" />
++    <ConfirmationsSetting value="0" id="Remove" />
++  </component>
++  <component name="ProjectPlainTextFileTypeManager">
++    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/customerresult.xml" />
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
++  <component name="ProjectType">
++    <option name="id" value="Android" />
++  </component>
+   <component name="masterDetails">
+     <states>
+       <state key="ProjectJDKs.UI">
+@@ -22,5 +38,4 @@
+       </state>
+     </states>
+   </component>
+-</project>
++</project>
+\ No newline at end of file
+-
+\ No newline at end of file
+Index: app/src/main/res/menu/menu_hipokamp.xml
+===================================================================
+--- app/src/main/res/menu/menu_hipokamp.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_hipokamp.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Hipokamp">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/activity_rdzen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_rdzen.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_rdzen.xml	(revision )
+@@ -1,26 +1,29 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
+     android:paddingBottom="@dimen/activity_vertical_margin"
++    android:orientation="vertical"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Rdzen">
+ 
+-            <TextView
++    <LinearLayout
++        android:orientation="vertical"
++        android:layout_width="fill_parent"
++        android:layout_height="fill_parent">
+ 
++    <TextView
+-                android:text="@string/funkcjeRdzen" android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:id="@+id/rdzen"
+-                />
++       android:text="@string/funkcjeRdzen" android:layout_width="wrap_content"
++       android:layout_height="wrap_content"
++       android:id="@+id/rdzen"
++       />
+ 
+-            <TextView
++    <TextView
+-                android:layout_below="@id/rdzen"
+                 android:id="@+id/sRdzen"
+                 android:text="@string/strukturyRdzen" android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+ 
+             <ImageView
+-                    android:layout_below="@id/sRdzen"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/model_rdzen"
+@@ -28,5 +31,5 @@
+                     android:src="@drawable/model_rdzen"
+                     android:layout_gravity="center_horizontal" />
+ 
+-
+-</RelativeLayout>
++</LinearLayout>
++    </ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_tylomozgowie.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_tylomozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_tylomozgowie.xml	(revision )
+@@ -1,16 +1,12 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
++    android:orientation="vertical"
+     android:paddingTop="@dimen/activity_vertical_margin"
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Tylomozgowie">
+ 
+-   <LinearLayout
+-        android:orientation="vertical"
+-        android:layout_width="fill_parent"
+-        android:layout_height="fill_parent">
+-
+         <ListView
+             android:text="@array/elementyTy?omózgowia"
+             android:layout_width="wrap_content"
+@@ -29,5 +25,3 @@
+             android:layout_weight="1" />
+     </LinearLayout>
+ 
+-
+-</RelativeLayout>
+Index: .idea/encodings.xml
+===================================================================
+--- .idea/encodings.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/encodings.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+-</project>
+-
+Index: app/src/main/res/menu/menu_wzgorze.xml
+===================================================================
+--- app/src/main/res/menu/menu_wzgorze.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_wzgorze.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Wzgorze">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/activity_miedzymozgowie.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_miedzymozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_miedzymozgowie.xml	(revision )
+@@ -20,6 +20,8 @@
+             android:layout_height="wrap_content"
+             android:src="@drawable/model_miedzymozgowie"
+             android:id="@+id/imageView"
+-            android:layout_gravity="center_horizontal" />
++            android:layout_gravity="center_horizontal"
++            android:layout_weight="1" />
++
+-    </LinearLayout>
++ </LinearLayout>
+ 
+Index: app/src/main/res/menu/menu_przysadka.xml
+===================================================================
+--- app/src/main/res/menu/menu_przysadka.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_przysadka.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Przysadka">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/activity_hipokamp.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_hipokamp.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_hipokamp.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Hipokamp">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -19,7 +14,13 @@
+             <TextView android:text="@string/hipokamp" android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+ 
++            <ImageView
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:id="@+id/hipokamp"
++                android:src="@drawable/hipokamp"
++                android:layout_gravity="center_horizontal" />
++
+         </LinearLayout>
+-    </ScrollView>
++</ScrollView>
+ 
+-</RelativeLayout>
+Index: .idea/scopes/scope_settings.xml
+===================================================================
+--- .idea/scopes/scope_settings.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/scopes/scope_settings.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,5 +0,0 @@
+-<component name="DependencyValidationManager">
+-  <state>
+-    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+-  </state>
+-</component>
+\ No newline at end of file
+Index: app/src/main/res/menu/menu_tylomozgowie.xml
+===================================================================
+--- app/src/main/res/menu/menu_tylomozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_tylomozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Tylomozgowie">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/activity_result.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_result.xml	(revision )
++++ app/src/main/res/layout/activity_result.xml	(revision )
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:orientation="vertical" android:layout_width="fill_parent"
++    android:layout_height="fill_parent" android:padding="5dp">
++    <RelativeLayout android:id="@+id/relativeLayout1"
++        android:layout_width="match_parent" android:layout_height="wrap_content">
++        <TextView android:id="@+id/sname" android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            style="@android:style/TextAppearance.Small" />
++    </RelativeLayout>
++</LinearLayout>
+Index: app/src/main/res/layout/activity_podwzgorze.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_podwzgorze.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_podwzgorze.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Podwzgorze">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -30,6 +25,5 @@
+                 android:layout_gravity="center_horizontal" />
+         </LinearLayout>
+ 
+-    </ScrollView>
++</ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/layout/synapsy.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/synapsy.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/synapsy.xml	(revision )
+@@ -1,17 +1,15 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
++    android:orientation="vertical"
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Synapsy">
+ 
+-    <LinearLayout
+-        android:orientation="vertical"
+-        android:layout_width="fill_parent"
+-        android:layout_height="fill_parent">
+-
+-        <TextView android:text="@string/synapsy" android:layout_width="wrap_content"
++        <TextView
++            android:text="@string/synapsy"
++            android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+ 
+         <pl.jolantawojcik.atlasfunkcjonalny.GifView
+@@ -20,6 +18,5 @@
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_horizontal" />
+ 
+-    </LinearLayout>
++ </LinearLayout>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_miedzymozgowie.xml
+===================================================================
+--- app/src/main/res/menu/menu_miedzymozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_miedzymozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Miedzymozgowie">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/search_result.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/search_result.xml	(revision )
++++ app/src/main/res/layout/search_result.xml	(revision )
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:orientation="vertical" android:layout_width="fill_parent"
++    android:layout_height="fill_parent" android:padding="5dp">
++        <TextView android:id="@+id/result" android:layout_width="wrap_content"
++            android:layout_height="wrap_content" style="@android:style/TextAppearance.Medium"
++            android:paddingRight="5sp" />
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_neurony.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_neurony.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_neurony.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Neurony">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/horizontalScrollView" >
+-
+         <LinearLayout
+             android:layout_width="match_parent" android:layout_height="match_parent"
+             android:orientation="vertical">
+@@ -36,6 +31,5 @@
+ 
+         </LinearLayout>
+ 
+-    </ScrollView>
++  </ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_srodmozgowie.xml
+===================================================================
+--- app/src/main/res/menu/menu_srodmozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_srodmozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Srodmozgowie">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/raw/xml/searchable.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/raw/xml/searchable.xml	(revision )
++++ app/src/main/res/raw/xml/searchable.xml	(revision )
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="utf-8"?>
++<searchable xmlns:android="http://schemas.android.com/apk/res/android"
++    android:showAsAction="never"
++    android:label="@string/search_label" android:hint="@string/search_hint" />
+\ No newline at end of file
+Index: app/src/main/res/layout-land/activity_tylomozgowie.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout-land/activity_tylomozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout-land/activity_tylomozgowie.xml	(revision )
+@@ -1,16 +1,12 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
+     android:paddingBottom="@dimen/activity_vertical_margin"
++    android:orientation="horizontal"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Tylomozgowie">
+ 
+-   <LinearLayout
+-        android:orientation="horizontal"
+-        android:layout_width="fill_parent"
+-        android:layout_height="fill_parent">
+-
+         <ListView
+             android:text="@array/elementyTy?omózgowia"
+             android:layout_width="wrap_content"
+@@ -28,5 +24,3 @@
+             android:layout_gravity="center_vertical" />
+     </LinearLayout>
+ 
+-
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_glej.xml
+===================================================================
+--- app/src/main/res/menu/menu_glej.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_glej.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Glej">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/modules.xml	(revision )
+@@ -6,5 +6,4 @@
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+     </modules>
+   </component>
+-</project>
++</project>
+\ No newline at end of file
+-
+\ No newline at end of file
+Index: AtlasFunkcjonalny.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- AtlasFunkcjonalny.iml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ AtlasFunkcjonalny.iml	(revision )
+@@ -1,13 +1,14 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
++<module external.linked.project.id="AtlasFunkcjonalny" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+   <component name="FacetManager">
+     <facet type="java-gradle" name="Java-Gradle">
+       <configuration>
+         <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/build" />
++        <option name="BUILDABLE" value="false" />
+       </configuration>
+     </facet>
+   </component>
+-  <component name="NewModuleRootManager" inherit-compiler-output="false">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <output url="file://$MODULE_DIR$/build/classes/main" />
+     <output-test url="file://$MODULE_DIR$/build/classes/test" />
+     <exclude-output />
+@@ -17,5 +18,4 @@
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+-</module>
++</module>
+\ No newline at end of file
+-
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_wzgorze.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_wzgorze.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_wzgorze.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Wzgorze">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -26,9 +21,9 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/wzgorze"
+-                android:src="@drawable/wzgorze"/>
++                android:src="@drawable/wzgorze"
++                android:layout_gravity="center_horizontal" />
+         </LinearLayout>
+ 
+-    </ScrollView>
++</ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -1,105 +1,119 @@
++<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
++    android:id="@+id/mainLayout"
+     android:orientation="vertical"
+     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Main">
+ 
++    <LinearLayout
++        android:id="@+id/leftLayout"
++        android:orientation="vertical"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content">
++
+         <SearchView
+-                android:queryHint="Wyszukaj struktur?"
++            android:queryHint="@string/search_hint"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:id="@+id/searchView"
+-                android:layout_gravity="right" />
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:id="@+id/searchView"
++            android:layout_gravity="right" />
+ 
+-                <HorizontalScrollView
++        <ListView
+-                    android:layout_width="wrap_content"
++            android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
++            android:layout_height="90dp"
++            android:id="@+id/searchList" />
++
++    </LinearLayout>
++
++    <HorizontalScrollView
++        android:layout_width="fill_parent"
++        android:layout_height="fill_parent"
+-                    android:id="@+id/horizontalScrollView2"
++        android:id="@+id/horizontalScrollView2"
+-                    android:layout_weight="1">
++        android:layout_gravity="center_vertical">
+ 
+-                    <LinearLayout
+-                        android:orientation="horizontal"
+-                        android:layout_width="fill_parent"
+-                        android:layout_height="fill_parent"
+-                        android:gravity="center_vertical">
++        <LinearLayout
++            android:orientation="horizontal"
++            android:layout_width="fill_parent"
++            android:layout_height="fill_parent"
++            android:gravity="center_vertical">
+ 
+-
+-                    <LinearLayout
+-                            android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                            android:layout_width="wrap_content"
+-                            android:layout_height="wrap_content"
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent"
+-                            android:layout_gravity="center_vertical"
+-                            android:id="@+id/rdzen_przedluzony"
+-                            android:layout_weight="1">
++                android:layout_gravity="center_vertical"
++                android:id="@+id/rdzen_przedluzony"
++                android:layout_weight="1">
+ 
+-                    <ImageView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:id="@+id/model_rdzen"
+-                        android:src="@drawable/model_rdzen"
+-                        android:scaleType = "matrix"
+-                        android:maxHeight="100dp"
+-                        android:maxWidth="50dp"
+-                        android:layout_gravity="center_vertical" />
++                <ImageView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:id="@+id/model_rdzen"
++                    android:src="@drawable/model_rdzen"
++                    android:scaleType = "matrix"
++                    android:maxHeight="100dp"
++                    android:maxWidth="50dp"
++                    android:layout_gravity="center_vertical" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/rdzen"
+-                        android:id="@+id/rdzen"
+-                        android:layout_gravity="center_horizontal|bottom" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/rdzen"
++                    android:id="@+id/rdzen"
++                    android:layout_gravity="center_horizontal|bottom" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                    <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:scaleType = "matrix"
+                     android:id="@+id/model_tylomozgowie"
+                     android:src="@drawable/model_tylomozgowie" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/title_activity_tylomozgowie"
+-                        android:id="@+id/tylomozgowie"
+-                        android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/title_activity_tylomozgowie"
++                    android:id="@+id/tylomozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                    <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/model_srodmozgowie"
+                     android:src="@drawable/model_srodmozgowie" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/srodmozgowie"
+-                        android:id="@+id/srodmozgowie"
+-                        android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/srodmozgowie"
++                    android:id="@+id/srodmozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                 <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/model_miedzymozgowie"
+@@ -108,19 +122,19 @@
+                     android:maxHeight="100dp"
+                     android:maxWidth="50dp"/>
+ 
+-                  <TextView
+-                      android:layout_width="wrap_content"
+-                      android:layout_height="wrap_content"
+-                      android:textAppearance="?android:attr/textAppearanceMedium"
+-                      android:text="@string/title_activity_miedzymozgowie"
+-                      android:id="@+id/miedzymozgowie"
+-                      android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/title_activity_miedzymozgowie"
++                    android:id="@+id/miedzymozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+                 <ImageView
+                     android:layout_width="wrap_content"
+@@ -128,38 +142,38 @@
+                     android:id="@+id/model_kresomozgowie"
+                     android:src="@drawable/model_kresomozgowie" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/title_activity_kresomozgowie"
+-                        android:id="@+id/kresomozgowie"
+-                        android:layout_gravity="center_horizontal" />
+-                </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/title_activity_kresomozgowie"
++                    android:id="@+id/kresomozgowie"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-                        <LinearLayout
+-                    android:orientation="vertical"
++            <LinearLayout
++                android:orientation="vertical"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content">
++                android:layout_width="fill_parent"
++                android:layout_height="fill_parent">
+ 
+-                 <ImageView
++                <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/model_komory_mozgowe"
+                     android:src="@drawable/model_komory_mozgowe" />
+ 
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="wrap_content"
+-                        android:textAppearance="?android:attr/textAppearanceMedium"
+-                        android:text="@string/komory"
+-                        android:id="@+id/komory"
+-                        android:layout_gravity="center_horizontal" />
+-                        </LinearLayout>
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceMedium"
++                    android:text="@string/komory"
++                    android:id="@+id/komory"
++                    android:layout_gravity="center_horizontal" />
++            </LinearLayout>
+ 
+-            </LinearLayout>
++        </LinearLayout>
+ 
+-        </HorizontalScrollView>
++    </HorizontalScrollView>
+ 
+-
+-    </LinearLayout>
++</LinearLayout>
++
+Index: app/src/main/res/layout/activity_most.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_most.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_most.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+@@ -8,11 +8,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Most">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+             <LinearLayout
+                 android:orientation="vertical"
+                 android:layout_width="wrap_content"
+@@ -28,9 +23,8 @@
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/most"
+-                android:src="@drawable/most"/>
++                android:src="@drawable/most"
++                android:layout_gravity="center_horizontal" />
+         </LinearLayout>
+ 
+     </ScrollView>
+-
+-</RelativeLayout>
+Index: app/src/main/res/layout/activity_przysadka.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_przysadka.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_przysadka.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Przysadka">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -28,5 +23,3 @@
+         </LinearLayout>
+ 
+     </ScrollView>
+-
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_jadra_podstawy.xml
+===================================================================
+--- app/src/main/res/menu/menu_jadra_podstawy.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_jadra_podstawy.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.JadraPodstawy">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/build.gradle	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/build.gradle	(revision )
+@@ -17,7 +17,11 @@
+             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+         }
+     }
+-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/raw'] } }
++    sourceSets {
++        main {
++            res.srcDirs = ['src/main/res', 'src/main/res/raw', 'src/main/res/xml1', 'src/main/res/xml']
++        }
++    }
+ }
+ 
+ dependencies {
+Index: app/src/main/res/layout/activity_spoidla.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_spoidla.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_spoidla.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Spoidla">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -19,7 +14,13 @@
+             <TextView android:text="@string/spoidla" android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+ 
++            <ImageView
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:id="@+id/spoidla"
++                android:src="@drawable/spoidla"
++                android:layout_gravity="center_horizontal" />
++
+         </LinearLayout>
+     </ScrollView>
+ 
+-</RelativeLayout>
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ .idea/gradle.xml	(revision )
+@@ -6,6 +6,7 @@
+         <option name="distributionType" value="LOCAL" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="gradleHome" value="C:\Program Files\Android\Android Studio\gradle\gradle-2.2.1" />
++        <option name="gradleJvm" value="1.7" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+@@ -15,5 +16,4 @@
+       </GradleProjectSettings>
+     </option>
+   </component>
+-</project>
++</project>
+\ No newline at end of file
+-
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_kora_mozgowa.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_kora_mozgowa.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_kora_mozgowa.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.KoraMozgowa">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -32,4 +27,3 @@
+ 
+     </ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/layout/activity_glej.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_glej.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_glej.xml	(revision )
+@@ -1,4 +1,4 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+@@ -6,11 +6,6 @@
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.Glej">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -23,4 +18,3 @@
+ 
+     </ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_kora_mozgowa.xml
+===================================================================
+--- app/src/main/res/menu/menu_kora_mozgowa.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_kora_mozgowa.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.KoraMozgowa">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/activity_srodmozgowie.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_srodmozgowie.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_srodmozgowie.xml	(revision )
+@@ -1,15 +1,11 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
+     android:paddingBottom="@dimen/activity_vertical_margin"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Srodmozgowie">
+-
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
++    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Srodmozgowie"
+-        android:id="@+id/scrollView" >
++    android:id="@+id/scrollView">
+ 
+         <LinearLayout
+             android:orientation="vertical"
+@@ -30,6 +26,4 @@
+                 android:layout_gravity="center_horizontal" />
+         </LinearLayout>
+ 
+-    </ScrollView>
++  </ScrollView>
+-
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_komory.xml
+===================================================================
+--- app/src/main/res/menu/menu_komory.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_komory.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Komory">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/menu/menu_mozdzek.xml
+===================================================================
+--- app/src/main/res/menu/menu_mozdzek.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_mozdzek.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Mozdzek">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/activity_jadra_podstawy.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_jadra_podstawy.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_jadra_podstawy.xml	(revision )
+@@ -1,16 +1,11 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
++    android:layout_height="fill_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
+     android:paddingBottom="@dimen/activity_vertical_margin"
+     tools:context="pl.jolantawojcik.atlasfunkcjonalny.JadraPodstawy">
+ 
+-    <ScrollView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:id="@+id/scrollView" >
+-
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+@@ -22,8 +17,14 @@
+             <TextView android:text="@string/jadraStruktury" android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+ 
++            <ImageView
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:id="@+id/jadra_podstawy"
++                android:src="@drawable/jadra_podstawy"
++                android:layout_gravity="center_horizontal" />
++
+         </LinearLayout>
+ 
+     </ScrollView>
+ 
+-</RelativeLayout>
+Index: app/src/main/res/menu/menu_podwzgorze.xml
+===================================================================
+--- app/src/main/res/menu/menu_podwzgorze.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/menu/menu_podwzgorze.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
+@@ -1,7 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Podwzgorze">
+-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+-        android:orderInCategory="100" app:showAsAction="never" />
+-</menu>
+Index: app/src/main/res/layout/activity_uklad_nerwowy.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_uklad_nerwowy.xml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/src/main/res/layout/activity_uklad_nerwowy.xml	(revision )
+@@ -1,16 +1,11 @@
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+     android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
+     android:paddingBottom="@dimen/activity_vertical_margin"
+-    tools:context="pl.jolantawojcik.atlasfunkcjonalny.UkladNerwowy">
+-
+-    <LinearLayout
+-        android:orientation="vertical"
++    android:orientation="vertical"
+-        android:layout_width="fill_parent"
+-        android:layout_height="fill_parent">
+-
++    tools:context="pl.jolantawojcik.atlasfunkcjonalny.UkladNerwowy">
+         <ListView
+             android:text="@array/elementyUkladuNerwowego"
+             android:layout_width="wrap_content"
+@@ -21,5 +16,3 @@
+ 
+ 
+     </LinearLayout>
+-
+-</RelativeLayout>
+Index: app/app.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/app.iml	(revision 36bfa792b4d0b0d48961a9e455c31e5e7101f556)
++++ app/app.iml	(revision )
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" type="JAVA_MODULE" version="4">
++<module external.linked.project.id=":app" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="AtlasFunkcjonalny" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+   <component name="FacetManager">
+     <facet type="android-gradle" name="Android-Gradle">
+       <configuration>
+@@ -9,10 +9,12 @@
+     <facet type="android" name="Android">
+       <configuration>
+         <option name="SELECTED_BUILD_VARIANT" value="debug" />
++        <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
+         <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+         <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+-        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugTest" />
+         <option name="SOURCE_GEN_TASK_NAME" value="generateDebugSources" />
++        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugTest" />
++        <option name="COMPILE_JAVA_TEST_TASK_NAME" value="compileDebugTestSources" />
+         <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateDebugTestSources" />
+         <option name="ALLOW_USER_CONFIGURATION" value="false" />
+         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+@@ -24,6 +26,7 @@
+   </component>
+   <component name="NewModuleRootManager" inherit-compiler-output="false">
+     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
++    <output-test url="file://$MODULE_DIR$/build/intermediates/classes/test/debug" />
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/debug" isTestSource="false" generated="true" />
+@@ -47,6 +50,8 @@
+       <sourceFolder url="file://$MODULE_DIR$/src/debug/rs" isTestSource="false" />
+       <sourceFolder url="file://$MODULE_DIR$/src/main/res" type="java-resource" />
+       <sourceFolder url="file://$MODULE_DIR$/src/main/res/raw" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/res/xml1" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/res/xml" type="java-resource" />
+       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+       <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
+       <sourceFolder url="file://$MODULE_DIR$/src/main/aidl" isTestSource="false" />
+@@ -88,5 +93,4 @@
+     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
+     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
+   </component>
+-</module>
++</module>
+\ No newline at end of file
+-
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_wyspa.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_wyspa.xml	(revision )
++++ app/src/main/res/layout/activity_wyspa.xml	(revision )
+@@ -0,0 +1,28 @@
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:paddingLeft="@dimen/activity_horizontal_margin"
++    android:paddingRight="@dimen/activity_horizontal_margin"
++    android:id="@+id/scrollWyspa"
++    android:paddingTop="@dimen/activity_vertical_margin"
++    android:paddingBottom="@dimen/activity_vertical_margin"
++    tools:context="pl.jolantawojcik.atlasfunkcjonalny.Wyspa">
++
++    <LinearLayout
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="vertical" >
++
++    <TextView android:text="@string/wyspa" android:layout_width="wrap_content"
++        android:layout_height="wrap_content" />
++
++    <ImageView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:id="@+id/wyspaPNG"
++        android:src="@drawable/wyspa"
++        android:layout_gravity="center_horizontal" />
++
++</LinearLayout>
++</ScrollView>
+\ No newline at end of file
