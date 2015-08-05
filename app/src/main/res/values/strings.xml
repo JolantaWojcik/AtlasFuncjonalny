@@ -17,7 +17,7 @@
     </string-array>
     <string-array name="elementyMozgowia">
         <item>Rdzeń przedłużony</item>
-        <item>Tyłomózgowie</item>
+        <item>Tyłomózgowie wtórne</item>
         <item>Śródmózgowie</item>
         <item>Międzymózgowie</item>
         <item>Kresomózgowie</item>
@@ -47,7 +47,7 @@
     <string name="title_activity_glej">Glej</string>
     <string name="title_activity_synapsy">Synapsy</string>
     <string name="title_activity_podzial_un">Podział Układu Nerwowego</string>
-    <string name="title_activity_tylomozgowie">Tyłomózgowie wtrórne</string>
+    <string name="title_activity_tylomozgowie">Tyłomózgowie wtórne</string>
     <string name="title_activity_miedzymozgowie">Międzymózgowie</string>
     <string name="title_activity_kresomozgowie">Kresomózgowie</string>
     <string name="impulsy">Układ nerwowy tworzą wyspecjalizowane komórki nerwowe zwane neuronami. Ich głównym zadaniem jest przewodzenie impulsów elektrycznych. Neuron możemy podzielić na trzy podstawowe części: \n
@@ -60,7 +60,7 @@
                 W Ośrodkowym Układzie Nerwowym, ciała neuronów tworzą skupiska, które nazywamy "istotą szarą".</string>
 
     <string name="title_activity_rdzen">Rdzeń przedłużony</string>
-    <string name="funkcjeRdzen">Funcje:
+    <string name="funkcjeRdzen">Funkcje:
    \n \t – regulacja oddychania
    \n \t – regulacja aktywności układu krążenia
    \n \t – odruchy: wymiotny, ślinienie, kaszel, kichanie \n</string>
@@ -121,10 +121,8 @@
         \n\t – konary mózgu \n</string>
     <string name="title_activity_wzgorze">Wzgórze</string>
     <string name="wzgorzeFunkcje">Funkcje:
-        \n – „brama kory" filtrowanie informacji docierających do kory(wszystkie zmysły oprócz węchu)
-        \n – rozległe, zwrotne połączenia z całą korą
-         \n – udział w pętlach neuronalnych sterujących ruchem(razem z korą mózgową i jądrami podstawy)
-        \n – sterowanie pobudzeniem korowym \n</string>
+    \n – „brama kory" filtrowanie informacji docierających do kory(wszystkie zmysły oprócz węchu) \n – rozległe, zwrotne połączenia z całą korą \n – udział w pętlach neuronalnych sterujących ruchem(razem z korą mózgową i jądrami podstawy \n – sterowanie pobudzeniem korowym \n
+    </string>
     <string name="wzgorzeStruktury">Główne struktury:
         \n\t – układ niespecyficzny (j. siatkowate, jj. śródblaszkowe)
         \n\t– układ specyficzny grupa jąder przyśrodkowych przednich, bocznych, poduszka, ciała kolankowate \n</string>
@@ -167,10 +165,9 @@
         \n\t – wodociąg mózgu (śródmózgowie)
         \n\t – komora czwarta (tyłomózgowie) \n</string>
     <string name="komoryFunkcje">Funkcje:
-        \n\t – produkcja płynu mózgowo-rdzeniowego
-        \n\t Otwory Magendiego (pośrodkowy) i Luschki (boczne)
-     \n\t – miejsca, gdzie płyn mózgowordzeniowy przedostaje się do
-			przestrzeni podpajęczynówkowej wokół mózgowia i rdzenia kręgowego \n</string>
+        \n\t • sploty naczyniówkowe – produkcja płynu mózgowo-rdzeniowego
+        \n\t • otwory Magendiego (pośrodkowy) i Luschki (boczne) –miejsca, gdzie płyn mózgowordzeniowy przedostaje się do przestrzeni podpajęczynówkowej wokół mózgowia i rdzenia kręgowego
+        \n</string>
     <string name="glej">        Komórki glejowe to kolejny typ komórek układu nerwowego. Szacuje się, że jest ich w organizmie około 10 razy więcej niż neuronów.
         Ich nazwa pochodzi od greckiego słowa "glia" oznaczającego klej, gdyż w momencie ich odkrycia sądzono,
         że stanowią one tylko nieaktywną tkankę łączącą ze sobą komórki nerwowe. Stąd wziął się też popularny mit głoszący,
@@ -186,12 +183,12 @@
                 \t* synapsy chemiczne - w nich przewodzenie odbywa się wolniej i za pośrednictwem specjalnych związków chemicznych, zwanych neuroprzekaźnikami. Powszechnie znane neuroprzekaźniki to np. serotonina, dopamina, adrenalina.\n</string>
     <string name="title_activity_jadra_podstawy">Jądra Podstawy</string>
     <string name="jadraFunkcje">Funkcje:
-        \n\t – liczne połączenia głównie z obszarazm kio crząo młoówzygmu,i
+        \n\t – liczne połączenia z korą mózgu głównie z obszarami czołowymi
         \n\t – planowanie i wykonanie ruchów
         \n\t – zachowania emocjonalne
         \n\t – pamięć proceduralna
-        \n\t – sctiarułok tmurig udkałłaodwua etem: ojecdjonnaa zln kelugoczowych
-        \n\t – jnąadgrroo pdóyłleżące: ważna część układu \n</string>
+        \n\t – ciało migdałkowate: jedna z kluczowych struktur układu emocjonalnego
+        \n\t – jądro półleżące: ważna część układu nagrody \n</string>
     <string name="jadraStruktury">        Główne struktury:
         \n\t – jądro ogoniaste
         \n\t – skorupa
@@ -201,14 +198,14 @@
         \n\t -jądro półleżące \n</string>
     <string name="spoidla">        Spoidła korowe i podkorowe:
         \n\t – spoidła korowe - wielkie, przednie, hipokampa
-        \n\t – spoidła podkorowe (poza kresomózgowiem) – tylne, uzdeczek, wzgórków czworaczych</string>
+        \n\t – spoidła podkorowe (poza kresomózgowiem) – tylne, uzdeczek, wzgórków czworaczych \n
+    </string>
     <string name="title_activity_spoidla">Spoidła</string>
     <string name="title_activity_hipokamp">Hipokamp</string>
-    <string name="hipokamp">        Struktura korowa leżąca w przyśrodkowej części płata skroniowego. \n
+    <string name="hipokamp"> Struktura korowa leżąca w przyśrodkowej części płata skroniowego. \n
         \n Funkcje:
-        \n\t – bierze udział w procesach pamięciowych
-        \t – wysyła połączenia przez sklepienie
-        \n\t – otrzymuje informacje przez korę śródwęchową</string>
+        \n\t – bierze udział w procesach pamięciowych\n\t – wysyła połączenia przez sklepienie
+        \n\t – otrzymuje informacje przez korę śródwęchową \n</string>
     <string name="title_activity_wyspa">Wyspa</string>
     <string name="wyspa">Ma kształt trójściennej piramidy z wierzchołkiem zwróconym ku przodowi i bokowi.
         Próg wyspy przerywa bruzdę okólną w okolicy jej wierzchołka. Buduje ją istota szara.
