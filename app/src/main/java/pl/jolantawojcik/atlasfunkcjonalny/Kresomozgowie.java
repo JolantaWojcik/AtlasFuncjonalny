@@ -13,8 +13,8 @@ import android.widget.ListView;
 
 public class Kresomozgowie extends ActionBarActivity {
 
-    String[] arrayKresomozgowie;
-    ListView  listViewKresomozgowie;
+    private String[] arrayKresomozgowie;
+    private ListView  listViewKresomozgowie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

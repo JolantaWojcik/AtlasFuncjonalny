@@ -13,8 +13,8 @@ import android.widget.ListView;
 
 public class Mozgowie extends ActionBarActivity {
 
-    ListView listViewMozgowie;
-    String[] arrayMozgowie;
+    private ListView listViewMozgowie;
+    private String[] arrayMozgowie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

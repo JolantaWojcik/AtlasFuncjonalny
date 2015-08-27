@@ -13,8 +13,8 @@ import android.widget.ListView;
 
 public class Miedzymozgowie extends ActionBarActivity {
 
-    String[] arrayMiedzymozgowie;
-    ListView listViewMiedzymozgowie;
+    private String[] arrayMiedzymozgowie;
+    private ListView listViewMiedzymozgowie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

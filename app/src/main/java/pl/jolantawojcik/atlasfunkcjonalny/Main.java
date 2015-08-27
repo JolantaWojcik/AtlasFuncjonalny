@@ -23,8 +23,6 @@ public class Main extends ActionBarActivity implements View.OnClickListener, Sea
 
     private ImageView model_tylomozgowie, model_miedzymozgowie, model_kresomozgowie, model_rdzen, model_srodmozgowie, model_komory;
 
-    GifView gifView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +55,6 @@ public class Main extends ActionBarActivity implements View.OnClickListener, Sea
         mDbHelper = new DbAdapter(this);
         mDbHelper.open();
 
-        //Clean all Customers
         mDbHelper.deleteAllItems();
         mDbHelper.createItem("Układ nerwowy");
         mDbHelper.createItem("Neurony");

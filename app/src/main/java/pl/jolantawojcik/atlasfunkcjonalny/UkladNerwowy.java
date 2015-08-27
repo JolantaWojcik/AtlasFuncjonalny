@@ -31,7 +31,7 @@ public class UkladNerwowy extends ActionBarActivity {
         listView.setOnItemClickListener( new OnItemClickListener(){
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                     if(arrayUkladNewrowy[position]==arrayUkladNewrowy[0]){
-                        Intent intent = new Intent(UkladNerwowy.this, Neurony.class);
+                       Intent intent = new Intent(UkladNerwowy.this, Neurony.class);
                         startActivity(intent);
                     }
                     if(arrayUkladNewrowy[position]==arrayUkladNewrowy[1]){
